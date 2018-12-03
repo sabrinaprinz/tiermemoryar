@@ -30,7 +30,7 @@
 
 	<h1 id="matchTitle">Match!</h1>
 
-	<a-scene embedded arjs='patternRatio: 0.7;'>
+	<a-scene embedded arjs='patternRatio: 0.9;'>
 
 		<a-assets>
     		<a-asset-item id="dog_v" src="assets/Hund_Vorne.obj"></a-asset-item>
@@ -40,9 +40,15 @@
     		<a-asset-item id="turtle" src="assets/Sea_Turtle.obj"></a-asset-item>
   		</a-assets>
 
+
+
+  		<!-- Test Schildkröte mit Textur 
+
   		<a-marker preset='custom' type='pattern' url='patterns/5.patt' id="marker1_1">
 			<a-obj-model src="#turtle"></a-obj-model>
-		</a-marker>
+		</a-marker> -->
+
+
 
 		<a-marker preset='custom' type='pattern' url='patterns/1.patt' id="marker1_1">
 			<a-obj-model src="#dog_v"></a-obj-model>
@@ -52,11 +58,11 @@
 			<a-obj-model src="#dog_h"></a-obj-model>
 		</a-marker>
 
-		<a-marker preset='custom' type='pattern' url='patterns/3.patt' id="marker1_1">
+		<a-marker preset='custom' type='pattern' url='patterns/3.patt' id="marker2_1">
 			<a-obj-model src="#cat_v"></a-obj-model>
 		</a-marker>
 
-		<a-marker preset='custom' type='pattern' url='patterns/4.patt' id="marker1_2">
+		<a-marker preset='custom' type='pattern' url='patterns/4.patt' id="marker2_2">
 			<a-obj-model src="#cat_h"></a-obj-model>
 		</a-marker>
 
