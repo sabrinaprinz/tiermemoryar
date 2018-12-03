@@ -1,0 +1,76 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Ar Aframe Base</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="css/normalize.min.css">
+	<link rel="stylesheet" href="css/main.css">
+
+	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+
+	<!-- AFRAME -->
+	<!-- include aframe -->
+	<script src="js/vendor/aframe/build/aframe.min.js"></script>
+
+	<!-- include ar.js -->
+	<!-- <script src="js/vendor/aframe/build/aframe-ar.js"></script> -->
+	<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/dev/aframe/build/aframe-ar.js"></script>
+
+</head>
+
+<body>
+
+	<p class="pairsFound">Pairs Found <span id="pairsFound"></span></p>
+
+	<h1 id="matchTitle">Match!</h1>
+
+	<a-scene embedded arjs='patternRatio: 0.7;'>
+
+		<a-marker preset='custom' type='pattern' url='patterns/1.patt' id="marker1_1">
+			<a-box color="navy" depth="1" height="1" width="1" position="0 0 0.5" material="opacity: 1; transparent: true"></a-box>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/2.patt' id="marker1_2">
+			<a-box color="navy" depth="1" height="1" width="1" position="0 0 0.5" material="opacity: 1; transparent: true"></a-box>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/3.patt' id="marker2_1">
+			<a-sphere color="aqua" position="0 0 0" radius="0.5" material="opacity: 1; transparent: true"></a-sphere>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/4.patt' id="marker2_2">
+			<a-sphere color="aqua" position="0 0 0" radius="0.5" material="opacity: 1; transparent: true"></a-sphere>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/5.patt' id="marker3_1">
+			<a-box color="lime" depth="1" height="1" width="1" position="0 0 0.5" material="opacity: 1; transparent: true"></a-box>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/6.patt' id="marker3_2">
+			<a-box color="lime" depth="1" height="1" width="1" position="0 0 0.5" material="opacity: 1; transparent: true"></a-box>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/7.patt' id="marker4_1">
+			<a-sphere color="orange" position="0 0 0" radius="0.5" material="opacity: 1; transparent: true"></a-sphere>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/8.patt' id="marker4_2">
+			<a-sphere color="orange" position="0 0 0" radius="0.5" material="opacity: 1; transparent: true"></a-sphere>
+		</a-marker>
+
+		<!-- add a simple camera -->
+		<a-entity camera></a-entity>
+	</a-scene>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+	<script src="js/main.js"></script>
+</body>
+
+</html>
