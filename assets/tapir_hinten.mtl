@@ -1,0 +1,26 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl tapir
+Ns 41.176471
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.180000 0.180000 0.180000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Ka /Users/Tabea/Desktop/Dokumente/Uni /S5/Tech2/Tapir/tapir_diffuse.jpg
+map_Kd /Users/Tabea/Desktop/Dokumente/Uni /S5/Tech2/Tapir/tapir_diffuse.jpg
+
+newmtl tapir_tapir_diffuse.jpg
+Ns 41.176471
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.180000 0.180000 0.180000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd /Users/Tabea/Desktop/Dokumente/Uni /S5/Tech2/Tapir/tapir_diffuse.jpg
+map_Ka /Users/Tabea/Desktop/Dokumente/Uni /S5/Tech2/Tapir/tapir_diffuse.jpg
