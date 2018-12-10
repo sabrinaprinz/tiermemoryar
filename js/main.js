@@ -14,7 +14,13 @@ let memorypairs = [
     ["marker1_1", "marker1_2", false],
     ["marker2_1", "marker2_2", false],
     ["marker3_1", "marker3_2", false],
-    ["marker4_1", "marker4_2", false]
+    ["marker4_1", "marker4_2", false],
+    ["marker5_1", "marker5_2", false],
+    ["marker6_1", "marker6_2", false],
+    ["marker7_1", "marker7_2", false],
+    ["marker8_1", "marker8_2", false],
+    ["marker9_1", "marker9_2", false],
+    ["marker10_1", "marker10_2", false]
 ]
 
 // ========== Functions to Add and Remove Names in params.currentlyVisibleMarkers ========== //
