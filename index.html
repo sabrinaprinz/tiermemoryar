@@ -30,19 +30,28 @@
 
 	<h1 id="matchTitle">Match!</h1>
 
-	<a-scene embedded arjs='patternRatio: 0.7;'>
+	<a-scene embedded arjs='patternRatio: 0.9;'>
 
 		<a-assets>
     		<a-asset-item id="dog_v" src="assets/Hund_Vorne.obj"></a-asset-item>
     		<a-asset-item id="dog_h" src="assets/Hund_Hinten.obj"></a-asset-item>
     		<a-asset-item id="cat_v" src="assets/Katze_Vorne.obj"></a-asset-item>
     		<a-asset-item id="cat_h" src="assets/Katze_Hinten.obj"></a-asset-item>
-    		<a-asset-item id="turtle" src="assets/Sea_Turtle.obj"></a-asset-item>
+    		<a-asset-item id="fish_v" src="assets/lustigerAugenfisch_Vorne.obj"></a-asset-item>
+    		<a-asset-item id="fish_h" src="assets/lustigerAugenfisch_Hinten.obj"></a-asset-item>
   		</a-assets>
+
+
+
+  		<!-- Test Schildkröte mit Textur 
 
   		<a-marker preset='custom' type='pattern' url='patterns/5.patt' id="marker1_1">
 			<a-obj-model src="#turtle"></a-obj-model>
-		</a-marker>
+		</a-marker> -->
+
+		<!-- https://threejs.org/editor/ -->
+
+
 
 		<a-marker preset='custom' type='pattern' url='patterns/1.patt' id="marker1_1">
 			<a-obj-model src="#dog_v"></a-obj-model>
@@ -52,20 +61,24 @@
 			<a-obj-model src="#dog_h"></a-obj-model>
 		</a-marker>
 
-		<a-marker preset='custom' type='pattern' url='patterns/3.patt' id="marker1_1">
+		<a-marker preset='custom' type='pattern' url='patterns/3.patt' id="marker2_1">
 			<a-obj-model src="#cat_v"></a-obj-model>
 		</a-marker>
 
-		<a-marker preset='custom' type='pattern' url='patterns/4.patt' id="marker1_2">
+		<a-marker preset='custom' type='pattern' url='patterns/4.patt' id="marker2_2">
 			<a-obj-model src="#cat_h"></a-obj-model>
 		</a-marker>
 
-
-		
-
-		<a-marker preset='custom' type='pattern' url='patterns/6.patt' id="marker3_2">
-			<a-box color="lime" depth="1" height="1" width="1" position="0 0 0.5" material="opacity: 1; transparent: true"></a-box>
+		<a-marker preset='custom' type='pattern' url='patterns/5.patt' id="marker2_2">
+			<a-obj-model src="#fish_v"></a-obj-model>
 		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/6.patt' id="marker2_2">
+			<a-obj-model src="#fish_h"></a-obj-model>
+		</a-marker>
+
+
+	
 
 		<a-marker preset='custom' type='pattern' url='patterns/7.patt' id="marker4_1">
 			<a-sphere color="orange" position="0 0 0" radius="0.5" material="opacity: 1; transparent: true"></a-sphere>
