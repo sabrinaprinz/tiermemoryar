@@ -7,20 +7,22 @@ let params = {
     foundPairs: 0,
     hideAllElements: false,
     all3DElements: [],
+    addSound: true,
+    audioPath: 'audio/'
 }
 
 // ========== Memory Pairs ========== //
 let memorypairs = [
-    ["marker1_1", "marker1_2", false],
-    ["marker2_1", "marker2_2", false],
-    ["marker3_1", "marker3_2", false],
-    ["marker4_1", "marker4_2", false],
-    ["marker5_1", "marker5_2", false],
-    ["marker6_1", "marker6_2", false],
-    ["marker7_1", "marker7_2", false],
-    ["marker8_1", "marker8_2", false],
-    ["marker9_1", "marker9_2", false],
-    ["marker10_1", "marker10_2", false]
+    ["marker1_1", "marker1_2", false, 'frog.mp3'],
+    ["marker2_1", "marker2_2", false, 'frog.mp3'],
+    ["marker3_1", "marker3_2", false, 'frog.mp3'],
+    ["marker4_1", "marker4_2", false, 'frog.mp3'],
+    ["marker5_1", "marker5_2", false, 'frog.mp3'],
+    ["marker6_1", "marker6_2", false, 'frog.mp3'],
+    ["marker7_1", "marker7_2", false, 'frog.mp3'],
+    ["marker8_1", "marker8_2", false, 'frog.mp3'],
+    ["marker9_1", "marker9_2", false, 'frog.mp3'],
+    ["marker10_1", "marker10_2", false, 'frog.mp3']
 ]
 
 // ========== Functions to Add and Remove Names in params.currentlyVisibleMarkers ========== //
@@ -114,6 +116,27 @@ function celebrateMatch() {
     $('#matchTitle').hide().css('opacity', '1').fadeIn(800).fadeOut(800);
 }
 
+// ========== Handle Sound ========== //
+function addSond() {
+    if(params.addSound){
+        $('#soundBox').css('display', 'flex');
+        audioplayer = document.createElement("AUDIO");
+        audioplayer.src = params.audioPath + "frog.mp3";
+        audioplayer.loop = false;
+    }
+}
+
+function startWithSound(){
+    audioplayer.play();
+    audioplayer.pause();
+    $('#soundBox').css('display', 'none');
+}
+
+function playSound(audioFilename){
+    audioplayer.src = params.audioPath + audioFilename;
+    audioplayer.play();
+}
+
 // ========== 3 or more cards visible ========== //
 
 
@@ -160,6 +183,7 @@ function init() {
 
     console.clear();
     updatePairsFound();
+    addSond();
 }
 init();
 
