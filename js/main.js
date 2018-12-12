@@ -7,7 +7,8 @@ let params = {
     foundPairs: 0,
     hideAllElements: false,
     all3DElements: [],
-    audioPath: 'audio/'
+    audioPath: 'audio/',
+    assetsPath: 'assets/'
 }
 
 // ========== Memory Pairs ========== //
@@ -195,6 +196,72 @@ function startGame() {
     addMarkerListeners();
     hideTitle();
 }
+
+// console.clear();
+
+// ========== PRESTUFF ========== //
+
+// This runs before Aframe to set the right models and check for rain.
+// ========== General Settings ========== //
+let preparams = {
+    addCollisionListeners: true,
+    switchModelsRain: true,
+    raining: false,
+    buildWithMtl: true,
+}
+
+let modelsSun = [
+    ['model.obj', "materials.mtl"],
+    ['model.obj', "materials.mtl"],
+    ['model.obj', "materials.mtl"],
+    ['model.obj', "materials.mtl"],
+]
+
+let modelsRain = [
+    ['model.obj', "materials.mtl"],
+    ['model.obj', "materials.mtl"],
+    ['model.obj', "materials.mtl"],
+    ['model.obj', "materials.mtl"],
+]
+
+function checkRain(){
+    preparams.raining = false;
+    setCorrectModels();
+}
+
+function generateModelHtml(objName, mtlName){
+    let string = `<a-obj-model src="${params.assetsPath}${objName}" mtl="${params.assetsPath}${mtlName}"></a-obj-model>`;
+    return string;
+}
+
+function setCorrectModels(){
+    let models;
+    if (!preparams.raining){
+        models = modelsSun;
+    } else {
+        models = modelsRain;
+    }
+
+    let markers = document.querySelectorAll('a-marker');
+
+    for (let i = 0; i < models.length; i++) {
+        const modelArray = models[i];
+        let modelHtmlString = generateModelHtml(modelArray[0], modelArray[1]);
+        console.log(modelHtmlString)
+        markers[i].innerHTML = modelHtmlString;
+    }
+}
+
+function init (){
+    checkRain();
+}
+
+{/* <a-obj-model src="assets/model.obj" mtl="assets/materials.mtl"></a-obj-model> */}
+//<a-obj-model src="crate.obj" mtl="crate.mtl"></a-obj-model>
+
+// ==========  ========== //
+
+init();
 
 
 // To Do:
