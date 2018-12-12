@@ -7,7 +7,6 @@ let params = {
     foundPairs: 0,
     hideAllElements: false,
     all3DElements: [],
-    addSound: true,
     audioPath: 'audio/'
 }
 
@@ -118,21 +117,15 @@ function celebrateMatch() {
 
 // ========== Handle Sound ========== //
 function addSond() {
-    if(params.addSound){
-        $('#soundBox').css('display', 'flex');
-        audioplayer = document.createElement("AUDIO");
-        audioplayer.src = params.audioPath + "frog.mp3";
-        audioplayer.loop = false;
-    }
-}
-
-function startWithSound(){
+    audioplayer = document.createElement("AUDIO");
+    audioplayer.src = params.audioPath + "frog.mp3";
+    audioplayer.loop = false;
+    // handle audio
     audioplayer.play();
     audioplayer.pause();
-    $('#soundBox').css('display', 'none');
 }
 
-function playSound(audioFilename){
+function playSound(audioFilename) {
     audioplayer.src = params.audioPath + audioFilename;
     audioplayer.play();
 }
@@ -154,7 +147,7 @@ function showAllElements() {
     });
 }
 
-function init() {
+function addMarkerListeners() {
     // add found / lost eventlisteners for markers
     const markers = document.querySelectorAll("a-marker");
     markers.forEach((marker) => {
@@ -183,9 +176,22 @@ function init() {
 
     console.clear();
     updatePairsFound();
-    addSond();
+
 }
-init();
+
+function loadAframe() {
+    // var aframeLoader = document.getElementById('aframeLoader');
+    // console.log(aframeLoader);
+    // aframeLoader.load();
+    document.querySelector('a-node').load()
+}
+
+
+function startGame() {
+    addSond();
+    loadAframe();
+    addMarkerListeners();
+}
 
 
 // To Do:

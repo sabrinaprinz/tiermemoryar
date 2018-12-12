@@ -32,7 +32,7 @@ a:hover {
     padding: 0;
 }
 
-#matchTitle{
+#matchTitle {
     position: absolute;
     width: 100vw;
     height: 100vh;
@@ -41,7 +41,6 @@ a:hover {
     color: white;
     opacity: 0;
     line-height: 80vh;
-
 }
 
 #soundBox {
@@ -55,13 +54,32 @@ a:hover {
     justify-content: center;
     align-items: center;
     display: none;
-
     #soundButton {
         margin-bottom: 10px;
     }
 }
 
-
+#titleWrapper {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0.5;
+    #startButton {
+        margin: 0;
+        margin-top: 14px;
+        margin-bottom: 5vh;
+    }
+}
 
 /* ==========================================================================
    Media Queries
