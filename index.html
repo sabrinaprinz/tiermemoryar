@@ -30,7 +30,11 @@
 
 	<h1 id="matchTitle">Match!</h1>
 
-	<a-scene embedded arjs='patternRatio: 0.9;'>
+	<div id="soundBox">
+		<button id="soundButton" type="button" onclick="startWithSound()">Start Game with sound</button>
+	</div>
+
+	<a-scene embedded arjs='patternRatio: 0.9; debugUIEnabled: false;'>
 
 		<a-assets>
     		<a-asset-item id="dog_v" src="assets/Hund_Vorne.obj"></a-asset-item>
@@ -88,8 +92,6 @@
     		<a-asset-item id="frosch_v" src="assets/frosch_vorne.obj"></a-asset-item>
     		<a-asset-item id="frosch_h" src="assets/frosch_hinten.obj"></a-asset-item>
 
-
-    		
   		</a-assets>
 
 
@@ -311,13 +313,13 @@
 
 	
 
-		<a-marker preset='custom' type='pattern' url='patterns/7.patt' id="marker4_1">
+		<!-- <a-marker preset='custom' type='pattern' url='patterns/7.patt' id="marker4_1">
 			<a-sphere color="orange" position="0 0 0" radius="0.5" material="opacity: 1; transparent: true"></a-sphere>
-		</a-marker>
+		</a-marker> -->
 
-		<a-marker preset='custom' type='pattern' url='patterns/8.patt' id="marker4_2">
+		<!-- <a-marker preset='custom' type='pattern' url='patterns/8.patt' id="marker4_2">
 			<a-sphere color="orange" position="0 0 0" radius="0.5" material="opacity: 1; transparent: true"></a-sphere>
-		</a-marker>
+		</a-marker> -->
 
 		<!-- add a simple camera -->
 		<a-entity camera></a-entity>
