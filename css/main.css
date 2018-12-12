@@ -35,6 +35,20 @@ a:hover {
   opacity: 0;
   line-height: 80vh; }
 
+#soundBox {
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none; }
+  #soundBox #soundButton {
+    margin-bottom: 10px; }
+
 /* ==========================================================================
    Media Queries
    ========================================================================== */
