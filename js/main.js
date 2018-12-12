@@ -116,7 +116,7 @@ function celebrateMatch() {
 }
 
 // ========== Handle Sound ========== //
-function addSond() {
+function addSound() {
     audioplayer = document.createElement("AUDIO");
     audioplayer.src = params.audioPath + "frog.mp3";
     audioplayer.loop = false;
@@ -131,7 +131,6 @@ function playSound(audioFilename) {
 }
 
 // ========== 3 or more cards visible ========== //
-
 
 function hideAllElements() {
     params.hideAllElements = true;
@@ -179,18 +178,22 @@ function addMarkerListeners() {
 
 }
 
+// ========== Interface Stuff ========== //
+
+function hideTitle () {
+    $('#titleWrapper').fadeOut('slow');
+}
+
 function loadAframe() {
-    // var aframeLoader = document.getElementById('aframeLoader');
-    // console.log(aframeLoader);
-    // aframeLoader.load();
     document.querySelector('a-node').load()
 }
 
 
 function startGame() {
-    addSond();
+    addSound();
     loadAframe();
     addMarkerListeners();
+    hideTitle();
 }
 
 

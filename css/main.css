@@ -63,7 +63,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  opacity: 0.5; }
+  opacity: 1; }
   #titleWrapper #startButton {
     margin: 0;
     margin-top: 14px;
