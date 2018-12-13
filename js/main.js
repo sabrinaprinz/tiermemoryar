@@ -25,17 +25,20 @@ let params = {
     initHits: 0,
     models: [],
     reachedEnd: false,
-    goodJokerVisible: true,
-    badJokerVisible: false,
     badJokerPlayed: [],
+    goodJokerPlayed: [],
+    goodJokerActive: false,
+    goodJokerActiveId: ""
 }
 
 // ========== Memory Pairs ========== //
 let modelsSun = [
     ['Hund_Vorne.obj', "materials.mtl", [2, 0, 0], "dog1", "normal"], // obj, material, position, refClass, specialCard
     ['Hund_Hinten.obj', "materials.mtl", [2, 0, 0], "dog2", "normal"],
-    ['model.obj', "materials.mtl", [0, 0, 0], "cat1", "badJoker"],
-    ['model.obj', "materials.mtl", [0, 0, 0], "cat2", "badJoker"],
+    ['model.obj', "materials.mtl", [0, 0, 0], "cat1", "goodJoker"],
+    ['model.obj', "materials.mtl", [0, 0, 0], "cat2", "goodJoker"],
+    // ['model.obj', "materials.mtl", [0, 0, 0], "cat1", "badJoker"],
+    // ['model.obj', "materials.mtl", [0, 0, 0], "cat2", "badJoker"],
 ]
 
 let modelsRain = [
@@ -114,9 +117,55 @@ function updatePairsFound() {
 
 function checkPair() {
     let amount = params.currentlyVisibleMarkers.length;
-    if (amount=== 2) {
+
+    // check for special card
+    if (amount == 2 || amount == 1) {
+        let cardsNameArray = [params.currentlyVisibleMarkers[0], params.currentlyVisibleMarkers[1]];
+
+        for (let i = 0; i < cardsNameArray.length; i++) {
+            const cardNameId = cardsNameArray[i];
+            if (typeof cardNameId !== 'undefined') {
+                let typeOfCard = document.getElementById(cardNameId).dataset.cardtype;
+                checkForSpecialCard(typeOfCard, cardNameId);
+
+            }
+
+        }
+
+    }
+
+    // check when two cards visible
+    if (amount === 2) {
         let card1 = params.currentlyVisibleMarkers[0];
         let card2 = params.currentlyVisibleMarkers[1];
+
+        if (params.goodJokerActive) {
+            // if joker active and 2 cards visible
+            // get the other card and set that paire correct
+
+            // get card that isn't joker;
+            let jokerID = params.goodJokerActiveId;
+            let nonJokerId;
+
+            if (jokerID == card1) {
+                nonJokerId = card2;
+            } else { nonJokerId = card1 }
+
+            // now get the correct round pair to set to match
+            memorypairs.forEach(pair => {
+                let card1Matching = pair.includes(nonJokerId);
+
+                if (card1Matching && pair[2] !== true) { //celebrate only if not already matched
+                    console.log("It's a match!")
+                    celebrateMatch();
+                    pair[2] = true;
+                    playSound(pair[3]);
+
+                }
+            });
+
+            params.goodJokerActive = false;
+        }
 
         // this is now done in Hit
         //go through list of pairs and check if matching
@@ -135,32 +184,25 @@ function checkPair() {
         //     }
         // });
     }
-
-    
-    if (amount == 2 || amount == 1) {
-        let cardsNameArray = [params.currentlyVisibleMarkers[0], params.currentlyVisibleMarkers[1]];
-
-        for (let i = 0; i < cardsNameArray.length; i++) {
-            const cardNameId = cardsNameArray[i];
-            if (typeof cardNameId !== 'undefined'){
-                let typeOfCard = document.getElementById(cardNameId).dataset.cardtype;
-                checkForSpecialCard(typeOfCard, cardNameId);
-
-            }
-            
-        }
-
-    }
 }
 
-function checkForSpecialCard(name, cardNameId){
-    if (name === 'badJoker'){
+function checkForSpecialCard(name, cardNameId) {
+    if (name === 'badJoker') {
         let alreadyPlayed = arrayContains(cardNameId, params.badJokerPlayed);
-            if(!alreadyPlayed){
-                showBadJoker();
-                params.badJokerPlayed.push(cardNameId);
-            }
-    }
+        if (!alreadyPlayed) {
+            showBadJoker();
+            params.badJokerPlayed.push(cardNameId);
+        }
+    };
+
+    if (name === 'goodJoker') {
+        let alreadyPlayed = arrayContains(cardNameId, params.goodJokerPlayed);
+        if (!alreadyPlayed) {
+            params.goodJokerActive = true;
+            params.goodJokerActiveId = cardNameId;
+            params.goodJokerPlayed.push(cardNameId);
+        }
+    };
 }
 
 function modelsHit(event) {
@@ -341,7 +383,7 @@ function setCorrectModels() {
         const modelArray = params.models[i];
         let modelHtmlString = generateModelHtml(i, modelArray[0], modelArray[1], modelArray[2], modelArray[3]);
         markers[i].innerHTML = modelHtmlString;
-        markers[i].dataset.cardtype =  modelArray[4];
+        markers[i].dataset.cardtype = modelArray[4];
     }
 }
 
@@ -404,7 +446,15 @@ function isEven(n) {
     return n === 0 || !!(n && !(n % 2));
 }
 
-function arrayContains(needle, arrhaystack)
-{
+function arrayContains(needle, arrhaystack) {
     return (arrhaystack.indexOf(needle) > -1);
+}
+
+function removeFromArr(arr, what) {
+    var found = arr.indexOf(what);
+
+    while (found !== -1) {
+        arr.splice(found, 1);
+        found = arr.indexOf(what);
+    }
 }
