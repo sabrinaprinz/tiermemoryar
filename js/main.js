@@ -6,8 +6,10 @@
 // ========== General Pre Settings ========== //
 let preparams = {
     addCollisionListeners: true,
-    switchModelsRain: true,
+    checkForWeather: false,
     raining: false,
+    rainIds: [803, 801, 802],
+    appIdWeatherApi: "9ddf1493dd103f1245f6d568075bc589",
     buildWithMtl: false,
 }
 
@@ -99,7 +101,7 @@ function updatePairsFound() {
     let foundPairs = 0;
 
     memorypairs.forEach(pair => {
-        if (pair[2] && pair[4] === "normal" ) { foundPairs++ }
+        if (pair[2] && pair[4] === "normal") { foundPairs++ }
     });
 
     let textElement = document.getElementById('pairsFound');
@@ -204,7 +206,7 @@ function checkForSpecialCard(name, cardNameId) {
             params.goodJokerPlayed.push(cardNameId);
 
             // play sound but only if joker first card
-            if (params.currentlyVisibleMarkers.length == 1){
+            if (params.currentlyVisibleMarkers.length == 1) {
                 playSound('goodJoker.mp3');
             }
         }
@@ -359,10 +361,48 @@ function startGame() {
 // This runs before Aframe to set the right models and check for rain.
 
 function checkRain() {
-    preparams.raining = false;
-    setCorrectModels();
-    addCollisions();
-    setCorrectTotalCount();
+    if (params.checkForWeather) {
+
+        var getLocation = function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(createAPI);
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
+        };
+
+        var ur = "";
+
+        var createAPI = function (position) {
+            ur = "https://api.openweathermap.org/data/2.5/weather?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&appid=" + preparams.appIdWeatherApi;
+            var json = undefined;
+
+            $.ajax({
+                dataType: "json",
+                url: ur,
+                data: function (data) {
+                },
+                success: function (success) {
+                    json = success;
+                    console.log("The weather outside is " + json.weather[0].main + ".");
+                    let weatherID = json.weather[0].id;
+                    preparams.raining = arrayContains(weatherID, preparams.rainIds);
+                    console.log("Is Raining:", preparams.raining);
+                    setCorrectModels();
+                    addCollisions();
+                    setCorrectTotalCount();
+                }
+            });
+        };
+
+        getLocation();
+    } else {
+        preparams.raining = false;
+        console.log("Didn't check for Rain. So Sunny");
+        setCorrectModels();
+        addCollisions();
+        setCorrectTotalCount();
+    }
 }
 
 function generateModelHtml(i, objName, mtlName, position, refClass) {
@@ -394,11 +434,11 @@ function setCorrectModels() {
     }
 }
 
-function setCorrectTotalCount(){
+function setCorrectTotalCount() {
     let count = 0;
     for (let i = 0; i < memorypairs.length; i++) {
         const cardType = memorypairs[i][4];
-        if(cardType == "normal"){
+        if (cardType == "normal") {
             count++
         }
     }
@@ -416,7 +456,7 @@ function returnCurrentModels() {
 }
 
 function addCollisions() {
-    console.log('set collisions');
+    console.log('set up collision event-listeners');
 
     // go through all models
     for (let i = 0; i < params.models.length; i++) {
