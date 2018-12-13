@@ -1,5 +1,8 @@
 /* eslint-disable */
 
+// IMPORTANT Readme //
+// 1. memorypairs and models need to have the same number and be even
+
 // ========== General Settings ========== //
 let params = {
     currentlyVisibleMarkers: [],
@@ -10,20 +13,24 @@ let params = {
     audioPath: 'audio/',
     assetsPath: 'assets/',
     currentPairMatching: false,
+    skippedInitColisionHit: false, // this is to prohibit hit event on init
+    initHits: 0,
+    models: [],
+    reachedEnd: false,
 }
 
 // ========== Memory Pairs ========== //
 let memorypairs = [
     ["marker1_1", "marker1_2", false, 'frog.mp3'],
     ["marker2_1", "marker2_2", false, 'frog.mp3'],
-    ["marker3_1", "marker3_2", false, 'frog.mp3'],
-    ["marker4_1", "marker4_2", false, 'frog.mp3'],
-    ["marker5_1", "marker5_2", false, 'frog.mp3'],
-    ["marker6_1", "marker6_2", false, 'frog.mp3'],
-    ["marker7_1", "marker7_2", false, 'frog.mp3'],
-    ["marker8_1", "marker8_2", false, 'frog.mp3'],
-    ["marker9_1", "marker9_2", false, 'frog.mp3'],
-    ["marker10_1", "marker10_2", false, 'frog.mp3']
+    // ["marker3_1", "marker3_2", false, 'frog.mp3'],
+    // ["marker4_1", "marker4_2", false, 'frog.mp3'],
+    // ["marker5_1", "marker5_2", false, 'frog.mp3'],
+    // ["marker6_1", "marker6_2", false, 'frog.mp3'],
+    // ["marker7_1", "marker7_2", false, 'frog.mp3'],
+    // ["marker8_1", "marker8_2", false, 'frog.mp3'],
+    // ["marker9_1", "marker9_2", false, 'frog.mp3'],
+    // ["marker10_1", "marker10_2", false, 'frog.mp3']
 ]
 
 // ========== Functions to Add and Remove Names in params.currentlyVisibleMarkers ========== //
@@ -42,7 +49,7 @@ function removeMarkerName(name) {
 // ========== Update Functions ========== //
 function updateGame() {
     updateHowManyVisible();
-    checkPair();
+    checkPair(); // checking now functions mostly through hit
     updatePairsFound();
 }
 
@@ -70,7 +77,13 @@ function updatePairsFound() {
     textElement.innerHTML = ` ${foundPairs} of ${memorypairs.length}`;
 
     if (foundPairs === memorypairs.length) {
-        alert('all matches found');
+        if (!params.reachedEnd) {
+            params.reachedEnd = true;
+            setTimeout(() => {
+                $('#endOfTheGame').hide().css('opacity', '1').fadeIn(800);
+            }, 1500);
+        }
+
     }
 }
 
@@ -79,23 +92,59 @@ function checkPair() {
         let card1 = params.currentlyVisibleMarkers[0];
         let card2 = params.currentlyVisibleMarkers[1];
 
+        // this is now done in Hit
         //go through list of pairs and check if matching
-        memorypairs.forEach(pair => {
-            let card1Matching = pair.includes(card1);
-            let card2Matching = pair.includes(card2);
+        // memorypairs.forEach(pair => {
+        //     let card1Matching = pair.includes(card1);
+        //     let card2Matching = pair.includes(card2);
 
-            if (card1Matching && card2Matching && pair[2] !== true) { //celebrate only if both matching and not already matched
-                console.log("It's a match!")
-                celebrateMatch();
-                pair[2] = true;
+        //     if (card1Matching && card2Matching && pair[2] !== true) { //celebrate only if both matching and not already matched
+        //         console.log("It's a match!")
+        //         celebrateMatch();
+        //         pair[2] = true;
 
-                // set each card opacity
-                setOpacityCard(card1, 0.5);
-                setOpacityCard(card2, 0.5);
-            }
-        });
-
+        //         // set each card opacity
+        //         setOpacityCard(card1, 0.5);
+        //         setOpacityCard(card2, 0.5);
+        //     }
+        // });
     }
+}
+
+function modelsHit(event) {
+    params.initHits++;
+
+    if (params.initHits === memorypairs.length && !params.skippedInitColisionHit) {
+        params.skippedInitColisionHit = true;
+        return; //skip the last one too
+    }
+
+    if (params.skippedInitColisionHit) {
+        let marker = event.path[1];
+        let markerid = marker.id;
+        let index = 0;
+
+        // loop through pairs and find correct index
+        for (let i = 0; i < memorypairs.length; i++) {
+            const pair = memorypairs[i];
+            if (pair[0] === markerid || pair[1] === markerid) {
+                index = i;
+                break;
+            }
+        }
+
+        console.log("XXXXXXXXXX", index);
+
+        // if index not found yet trigger matchmade
+        if (!memorypairs[index][2]) {
+            memorypairs[index][2] = true;
+            celebrateMatch();
+            playSound(memorypairs[index][3])
+        }
+    }
+
+    updatePairsFound();
+
 }
 
 // ========== Match Functions ========== //
@@ -128,8 +177,11 @@ function addSound() {
 }
 
 function playSound(audioFilename) {
-    audioplayer.src = params.audioPath + audioFilename;
-    audioplayer.play();
+    // catch error if no src
+    if (typeof audioFilename !== "undefined") {
+        audioplayer.src = params.audioPath + audioFilename;
+        audioplayer.play();
+    }
 }
 
 // ========== 3 or more cards visible ========== //
@@ -282,18 +334,17 @@ function addCollisions() {
                 init: function () {
                     this.el.addEventListener('hitstart', (e) => {
                         console.log(e)
+                        modelsHit(e);
                     })
                     this.el.addEventListener('hit', (e) => {
-                        console.log(e)
+                        // console.log(e)
                     })
                     this.el.addEventListener('hitend', (e) => {
                         console.log('hitend')
-                        console.log(e)
+                        // console.log(e)
                     })
                 }
             })
-
-
         }
 
     }
