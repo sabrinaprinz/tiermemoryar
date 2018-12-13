@@ -3,6 +3,14 @@
 // IMPORTANT Readme //
 // 1. memorypairs and models need to have the same number and be even
 
+// ========== General Pre Settings ========== //
+let preparams = {
+    addCollisionListeners: true,
+    switchModelsRain: true,
+    raining: false,
+    buildWithMtl: false,
+}
+
 // ========== General Settings ========== //
 let params = {
     currentlyVisibleMarkers: [],
@@ -17,9 +25,26 @@ let params = {
     initHits: 0,
     models: [],
     reachedEnd: false,
+    goodJokerVisible: true,
+    badJokerVisible: false,
+    badJokerPlayed: [],
 }
 
 // ========== Memory Pairs ========== //
+let modelsSun = [
+    ['Hund_Vorne.obj', "materials.mtl", [2, 0, 0], "dog1", "normal"], // obj, material, position, refClass, specialCard
+    ['Hund_Hinten.obj', "materials.mtl", [2, 0, 0], "dog2", "normal"],
+    ['model.obj', "materials.mtl", [0, 0, 0], "cat1", "badJoker"],
+    ['model.obj', "materials.mtl", [0, 0, 0], "cat2", "badJoker"],
+]
+
+let modelsRain = [
+    ['model.obj', "materials.mtl", [0, 0, 0]],
+    ['model.obj', "materials.mtl", [0, 0, 0]],
+    ['model.obj', "materials.mtl", [0, 0, 0]],
+    ['model.obj', "materials.mtl", [0, 0, 0]],
+]
+
 let memorypairs = [
     ["marker1_1", "marker1_2", false, 'frog.mp3'],
     ["marker2_1", "marker2_2", false, 'frog.mp3'],
@@ -88,7 +113,8 @@ function updatePairsFound() {
 }
 
 function checkPair() {
-    if (params.currentlyVisibleMarkers.length === 2) {
+    let amount = params.currentlyVisibleMarkers.length;
+    if (amount=== 2) {
         let card1 = params.currentlyVisibleMarkers[0];
         let card2 = params.currentlyVisibleMarkers[1];
 
@@ -108,6 +134,32 @@ function checkPair() {
         //         setOpacityCard(card2, 0.5);
         //     }
         // });
+    }
+
+    
+    if (amount == 2 || amount == 1) {
+        let cardsNameArray = [params.currentlyVisibleMarkers[0], params.currentlyVisibleMarkers[1]];
+
+        for (let i = 0; i < cardsNameArray.length; i++) {
+            const cardNameId = cardsNameArray[i];
+            if (typeof cardNameId !== 'undefined'){
+                let typeOfCard = document.getElementById(cardNameId).dataset.cardtype;
+                checkForSpecialCard(typeOfCard, cardNameId);
+
+            }
+            
+        }
+
+    }
+}
+
+function checkForSpecialCard(name, cardNameId){
+    if (name === 'badJoker'){
+        let alreadyPlayed = arrayContains(cardNameId, params.badJokerPlayed);
+            if(!alreadyPlayed){
+                showBadJoker();
+                params.badJokerPlayed.push(cardNameId);
+            }
     }
 }
 
@@ -132,9 +184,6 @@ function modelsHit(event) {
                 break;
             }
         }
-
-        console.log("XXXXXXXXXX", index);
-
         // if index not found yet trigger matchmade
         if (!memorypairs[index][2]) {
             memorypairs[index][2] = true;
@@ -164,6 +213,11 @@ function setOpacityCard(cardId, opacity) {
 
 function celebrateMatch() {
     $('#matchTitle').hide().css('opacity', '1').fadeIn(800).fadeOut(800);
+}
+
+function showBadJoker() {
+    $('#badJoker').hide().css('opacity', '1').fadeIn(800).fadeOut(800);
+    playSound('badJoker.mp3')
 }
 
 // ========== Handle Sound ========== //
@@ -206,6 +260,7 @@ function addMarkerListeners() {
     markers.forEach((marker) => {
         marker.addEventListener("markerFound", (e) => {
             letMarkerId = e.target.id;
+            // console.log(e.target)
             // console.log(`found ${letMarkerId}`)
             addMarkerName(letMarkerId);
             updateGame()
@@ -255,28 +310,6 @@ function startGame() {
 // ============================== INIT ============================== //
 // This runs before Aframe to set the right models and check for rain.
 
-// ========== General Pre Settings ========== //
-let preparams = {
-    addCollisionListeners: true,
-    switchModelsRain: true,
-    raining: false,
-    buildWithMtl: false,
-}
-
-let modelsSun = [
-    ['Hund_Vorne.obj', "materials.mtl", [2, 0, 0], "dog1"], // obj, material, position, refClass
-    ['Hund_Hinten.obj', "materials.mtl", [2, 0, 0], "dog2"],
-    ['model.obj', "materials.mtl", [0, 0, 0], "cat1"],
-    ['model.obj', "materials.mtl", [0, 0, 0], "cat2"],
-]
-
-let modelsRain = [
-    ['model.obj', "materials.mtl", [0, 0, 0]],
-    ['model.obj', "materials.mtl", [0, 0, 0]],
-    ['model.obj', "materials.mtl", [0, 0, 0]],
-    ['model.obj', "materials.mtl", [0, 0, 0]],
-]
-
 function checkRain() {
     preparams.raining = false;
     setCorrectModels();
@@ -308,6 +341,7 @@ function setCorrectModels() {
         const modelArray = params.models[i];
         let modelHtmlString = generateModelHtml(i, modelArray[0], modelArray[1], modelArray[2], modelArray[3]);
         markers[i].innerHTML = modelHtmlString;
+        markers[i].dataset.cardtype =  modelArray[4];
     }
 }
 
@@ -368,4 +402,9 @@ init();
 function isEven(n) {
     n = Number(n);
     return n === 0 || !!(n && !(n % 2));
+}
+
+function arrayContains(needle, arrhaystack)
+{
+    return (arrhaystack.indexOf(needle) > -1);
 }

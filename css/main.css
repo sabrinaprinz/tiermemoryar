@@ -26,6 +26,18 @@ a:hover {
   padding: 0; }
 
 #matchTitle {
+  pointer-events: none;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  font-size: 8rem;
+  text-align: center;
+  color: white;
+  opacity: 0;
+  line-height: 80vh; }
+
+#badJoker {
+  pointer-events: none;
   position: absolute;
   width: 100vw;
   height: 100vh;
