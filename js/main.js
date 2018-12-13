@@ -28,7 +28,8 @@ let params = {
     badJokerPlayed: [],
     goodJokerPlayed: [],
     goodJokerActive: false,
-    goodJokerActiveId: ""
+    goodJokerActiveId: "",
+    officialMemorypairsLength: 0, // count length without jokers
 }
 
 // ========== Memory Pairs ========== //
@@ -43,14 +44,14 @@ let modelsSun = [
 
 let modelsRain = [
     ['model.obj', "materials.mtl", [0, 0, 0]],
-    ['model.obj', "materials.mtl", [0, 0, 0]],
-    ['model.obj', "materials.mtl", [0, 0, 0]],
-    ['model.obj', "materials.mtl", [0, 0, 0]],
+    ['model.obj', "materials.mtl", [0, 0, 0], "normal"],
+    ['model.obj', "materials.mtl", [0, 0, 0], "goodJoker"],
+    ['model.obj', "materials.mtl", [0, 0, 0], "goodJoker"],
 ]
 
 let memorypairs = [
-    ["marker1_1", "marker1_2", false, 'frog.mp3'],
-    ["marker2_1", "marker2_2", false, 'frog.mp3'],
+    ["marker1_1", "marker1_2", false, 'frog.mp3', "normal"],
+    ["marker2_1", "marker2_2", false, 'goodJoker.mp3', "goodJoker"],
     // ["marker3_1", "marker3_2", false, 'frog.mp3'],
     // ["marker4_1", "marker4_2", false, 'frog.mp3'],
     // ["marker5_1", "marker5_2", false, 'frog.mp3'],
@@ -98,13 +99,13 @@ function updatePairsFound() {
     let foundPairs = 0;
 
     memorypairs.forEach(pair => {
-        if (pair[2]) { foundPairs++ }
+        if (pair[2] && pair[4] === "normal" ) { foundPairs++ }
     });
 
     let textElement = document.getElementById('pairsFound');
-    textElement.innerHTML = ` ${foundPairs} of ${memorypairs.length}`;
+    textElement.innerHTML = ` ${foundPairs} of ${params.officialMemorypairsLength}`;
 
-    if (foundPairs === memorypairs.length) {
+    if (foundPairs === params.officialMemorypairsLength) {
         if (!params.reachedEnd) {
             params.reachedEnd = true;
             setTimeout(() => {
@@ -201,6 +202,11 @@ function checkForSpecialCard(name, cardNameId) {
             params.goodJokerActive = true;
             params.goodJokerActiveId = cardNameId;
             params.goodJokerPlayed.push(cardNameId);
+
+            // play sound but only if joker first card
+            if (params.currentlyVisibleMarkers.length == 1){
+                playSound('goodJoker.mp3');
+            }
         }
     };
 }
@@ -356,6 +362,7 @@ function checkRain() {
     preparams.raining = false;
     setCorrectModels();
     addCollisions();
+    setCorrectTotalCount();
 }
 
 function generateModelHtml(i, objName, mtlName, position, refClass) {
@@ -385,6 +392,17 @@ function setCorrectModels() {
         markers[i].innerHTML = modelHtmlString;
         markers[i].dataset.cardtype = modelArray[4];
     }
+}
+
+function setCorrectTotalCount(){
+    let count = 0;
+    for (let i = 0; i < memorypairs.length; i++) {
+        const cardType = memorypairs[i][4];
+        if(cardType == "normal"){
+            count++
+        }
+    }
+    params.officialMemorypairsLength = count;
 }
 
 function returnCurrentModels() {
@@ -448,13 +466,4 @@ function isEven(n) {
 
 function arrayContains(needle, arrhaystack) {
     return (arrhaystack.indexOf(needle) > -1);
-}
-
-function removeFromArr(arr, what) {
-    var found = arr.indexOf(what);
-
-    while (found !== -1) {
-        arr.splice(found, 1);
-        found = arr.indexOf(what);
-    }
 }
