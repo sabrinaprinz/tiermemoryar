@@ -8,7 +8,8 @@ let params = {
     hideAllElements: false,
     all3DElements: [],
     audioPath: 'audio/',
-    assetsPath: 'assets/'
+    assetsPath: 'assets/',
+    currentPairMatching: false,
 }
 
 // ========== Memory Pairs ========== //
@@ -181,7 +182,7 @@ function addMarkerListeners() {
 
 // ========== Interface Stuff ========== //
 
-function hideTitle () {
+function hideTitle() {
     $('#titleWrapper').fadeOut('slow');
 }
 
@@ -199,70 +200,121 @@ function startGame() {
 
 // console.clear();
 
-// ========== PRESTUFF ========== //
-
+// ============================== INIT ============================== //
 // This runs before Aframe to set the right models and check for rain.
-// ========== General Settings ========== //
+
+// ========== General Pre Settings ========== //
 let preparams = {
     addCollisionListeners: true,
     switchModelsRain: true,
     raining: false,
-    buildWithMtl: true,
+    buildWithMtl: false,
 }
 
 let modelsSun = [
-    ['model.obj', "materials.mtl"],
-    ['model.obj', "materials.mtl"],
-    ['model.obj', "materials.mtl"],
-    ['model.obj', "materials.mtl"],
+    ['Hund_Vorne.obj', "materials.mtl", [2, 0, 0], "dog1"], // obj, material, position, refClass
+    ['Hund_Hinten.obj', "materials.mtl", [2, 0, 0], "dog2"],
+    ['model.obj', "materials.mtl", [0, 0, 0], "cat1"],
+    ['model.obj', "materials.mtl", [0, 0, 0], "cat2"],
 ]
 
 let modelsRain = [
-    ['model.obj', "materials.mtl"],
-    ['model.obj', "materials.mtl"],
-    ['model.obj', "materials.mtl"],
-    ['model.obj', "materials.mtl"],
+    ['model.obj', "materials.mtl", [0, 0, 0]],
+    ['model.obj', "materials.mtl", [0, 0, 0]],
+    ['model.obj', "materials.mtl", [0, 0, 0]],
+    ['model.obj', "materials.mtl", [0, 0, 0]],
 ]
 
-function checkRain(){
+function checkRain() {
     preparams.raining = false;
     setCorrectModels();
+    addCollisions();
 }
 
-function generateModelHtml(objName, mtlName){
-    let string = `<a-obj-model src="${params.assetsPath}${objName}" mtl="${params.assetsPath}${mtlName}"></a-obj-model>`;
+function generateModelHtml(i, objName, mtlName, position, refClass) {
+    let string;
+    let registerCollisionComponentString = '';
+    if (isEven(i)) {
+        let nextModelClass = params.models[i + 1][3];
+        registerCollisionComponentString = `collision-${refClass} aabb-collider="objects: .${nextModelClass}"`;
+    }
+
+    if (preparams.buildWithMtl) {
+        string = `<a-obj-model class="${refClass}" src="${params.assetsPath}${objName}" mtl="${params.assetsPath}${mtlName}" position="${position[0]} ${position[1]} ${position[2]}" ${registerCollisionComponentString}></a-obj-model>`;
+    } else {
+        string = `<a-obj-model class="${refClass}" src="${params.assetsPath}${objName}" position="${position[0]} ${position[1]} ${position[2]}" ${registerCollisionComponentString}></a-obj-model>`;
+    }
     return string;
 }
 
-function setCorrectModels(){
-    let models;
-    if (!preparams.raining){
-        models = modelsSun;
-    } else {
-        models = modelsRain;
-    }
+function setCorrectModels() {
+    params.models = returnCurrentModels();
 
     let markers = document.querySelectorAll('a-marker');
 
-    for (let i = 0; i < models.length; i++) {
-        const modelArray = models[i];
-        let modelHtmlString = generateModelHtml(modelArray[0], modelArray[1]);
-        console.log(modelHtmlString)
+    for (let i = 0; i < params.models.length; i++) {
+        const modelArray = params.models[i];
+        let modelHtmlString = generateModelHtml(i, modelArray[0], modelArray[1], modelArray[2], modelArray[3]);
         markers[i].innerHTML = modelHtmlString;
     }
 }
 
-function init (){
-    checkRain();
+function returnCurrentModels() {
+    let models;
+    if (!preparams.raining) {
+        models = modelsSun;
+    } else {
+        models = modelsRain;
+    }
+    return models;
 }
 
-{/* <a-obj-model src="assets/model.obj" mtl="assets/materials.mtl"></a-obj-model> */}
-//<a-obj-model src="crate.obj" mtl="crate.mtl"></a-obj-model>
+function addCollisions() {
+    console.log('set collisions');
 
-// ==========  ========== //
+    // go through all models
+    for (let i = 0; i < params.models.length; i++) {
+        if (isEven(i)) {
+            const model = params.models[i];
+            let collisionRef = "collision-" + model[3];
 
+            AFRAME.registerComponent(collisionRef, {
+                init: function () {
+                    this.el.addEventListener('hitstart', (e) => {
+                        console.log(e)
+                    })
+                    this.el.addEventListener('hit', (e) => {
+                        console.log(e)
+                    })
+                    this.el.addEventListener('hitend', (e) => {
+                        console.log('hitend')
+                        console.log(e)
+                    })
+                }
+            })
+
+
+        }
+
+    }
+
+
+
+
+
+
+    //   foo1 aabb-collider="objects: .dog2"
+}
+
+function init() {
+    checkRain();
+}
 init();
 
 
-// To Do:
-// should found objects not be displayed or get opacity / other color / other model? 
+// ============ HELPER FUNCTIONS =========== //
+
+function isEven(n) {
+    n = Number(n);
+    return n === 0 || !!(n && !(n % 2));
+}
