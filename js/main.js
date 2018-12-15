@@ -284,8 +284,28 @@ function modelsHit(event) {
                 break;
             }
         }
+
+        // THIS IS REALLY IMPORTANT!
+        // until here, it's really buggy because the analysis triggers different markers at the same time.
+        // to make sure, it allows trigger checkmade, check if models fit to markers
+        let marker1 = params.currentlyVisibleMarkers[0];
+        let marker2 = params.currentlyVisibleMarkers[1];
+        let modelTriggeringMatch = event.path[0].className;
+
+        //now check if the animal belongs to the visible marker
+        let belongsToMarker = false;
+        let marker1ChildClass = document.getElementById(marker1).firstChild.className;
+        let marker2ChildClass = document.getElementById(marker2).firstChild.className;
+        if (marker1ChildClass === modelTriggeringMatch || marker2ChildClass === modelTriggeringMatch){
+            belongsToMarker = true;
+        }
+        console.log(marker1ChildClass, marker2ChildClass, modelTriggeringMatch)
+
+
+
         // if index not found yet trigger matchmade
-        if (!memorypairs[index][2]) {
+        if (!memorypairs[index][2] && belongsToMarker) {
+            console.log(params.currentlyVisibleMarkers);
             memorypairs[index][2] = true;
             celebrateMatch();
             playSound(memorypairs[index][3])
@@ -519,15 +539,15 @@ function addCollisions() {
             AFRAME.registerComponent(collisionRef, {
                 init: function () {
                     this.el.addEventListener('hitstart', (e) => {
-                        console.log(e)
                         console.log('hitstart');
+                        console.log(e)
                         modelsHit(e);
                     })
                     this.el.addEventListener('hit', (e) => {
                         // console.log(e)
                     })
                     this.el.addEventListener('hitend', (e) => {
-                        console.log('hitend')
+                        // console.log('hitend')
                         // console.log(e)
                     })
                 }
