@@ -40,29 +40,29 @@ let modelsSun = [
     ['Hund_Hinten.obj', "materials.mtl", [0, 0, 0], "dog2", "normal"],
     ['Katze_Vorne.obj', "materials.mtl", [0, 0, 0], "cat1", "normal"],
     ['Katze_Hinten.obj', "materials.mtl", [0, 0, 0], "cat2", "normal"],
-    // ['tapir_vorne.obj', "materials.mtl", [0, 0, 0], "tapir1", "normal"],
-    // ['tapir_hinten.obj', "materials.mtl", [1.3, 0, 0], "tapir2", "normal"],
-    // ['tukan_vorne.obj', "materials.mtl", [0, 0, 0], "tukan1", "normal"],
-    // ['tukan_hinten.obj', "materials.mtl", [1.3, 0, 0], "tukan2", "normal"],
-    // ['affen_vorne.obj', "materials.mtl", [0, 0, 0], "affe1", "normal"],
-    // ['affen_hinten.obj', "materials.mtl", [1.3, 0, 0], "affe2", "normal"],
-    // ['bär_vorne.obj', "materials.mtl", [0, 0, 0], "bär1", "normal"],
-    // ['bär_hinten.obj', "materials.mtl", [1.3, -0.05, 0], "bär2", "normal"],
-    // ['fuchs_vorne.obj', "materials.mtl", [0, 0, 0], "fuchs1", "normal"],
-    // ['fuchs_hinten.obj', "materials.mtl", [1.3, -0.04, 0], "fuchs2", "normal"],
-    // ['giraffe_vorne.obj', "materials.mtl", [0, 0, 0], "giraffe1", "normal"],
-    // ['giraffe_hinten.obj', "materials.mtl", [1.3, 0, 0], "giraffe2", "normal"],
-    // ['koala_vorne.obj', "materials.mtl", [0, 0, 0], "koala1", "normal"],
-    // ['koala_hinten.obj', "materials.mtl", [1.3, 0, 0], "koala2", "normal"],
-    // ['schaf_vorne.obj', "materials.mtl", [0, 0, 0], "schaf1", "normal"],
-    // ['schaf_hinten.obj', "materials.mtl", [1.3, 0, 0], "schaf2", "normal"],
-    // ['löwe_vorne.obj', "materials.mtl", [0, 0, 0], "löwe1", "normal"],
-    // ['löwe_hinten.obj', "materials.mtl", [1.3, 0, 0], "löwe2", "normal"],
-    // // joker
-    // ['joker_01.obj', "materials.mtl", [1.5, 0, 0], "goodJoker1", "goodJoker"],
-    // ['joker_02.obj', "materials.mtl", [1.5, 0, 0], "goodJoker2", "goodJoker"],
-    // ['joker_03.obj', "materials.mtl", [1.5, 0, 0], "badJoker1", "badJoker"],
-    // ['joker_04.obj', "materials.mtl", [1.5, 0, 0], "badJoker2", "badJoker"]
+    ['tapir_vorne.obj', "materials.mtl", [0, 0, 0], "tapir1", "normal"],
+    ['tapir_hinten.obj', "materials.mtl", [1.3, 0, 0], "tapir2", "normal"],
+    ['tukan_vorne.obj', "materials.mtl", [0, 0, 0], "tukan1", "normal"],
+    ['tukan_hinten.obj', "materials.mtl", [1.3, 0, 0], "tukan2", "normal"],
+    ['affen_vorne.obj', "materials.mtl", [0, 0, 0], "affe1", "normal"],
+    ['affen_hinten.obj', "materials.mtl", [1.3, 0, 0], "affe2", "normal"],
+    ['bär_vorne.obj', "materials.mtl", [0, 0, 0], "bär1", "normal"],
+    ['bär_hinten.obj', "materials.mtl", [1.3, -0.05, 0], "bär2", "normal"],
+    ['fuchs_vorne.obj', "materials.mtl", [0, 0, 0], "fuchs1", "normal"],
+    ['fuchs_hinten.obj', "materials.mtl", [1.3, -0.04, 0], "fuchs2", "normal"],
+    ['giraffe_vorne.obj', "materials.mtl", [0, 0, 0], "giraffe1", "normal"],
+    ['giraffe_hinten.obj', "materials.mtl", [1.3, 0, 0], "giraffe2", "normal"],
+    ['koala_vorne.obj', "materials.mtl", [0, 0, 0], "koala1", "normal"],
+    ['koala_hinten.obj', "materials.mtl", [1.3, 0, 0], "koala2", "normal"],
+    ['schaf_vorne.obj', "materials.mtl", [0, 0, 0], "schaf1", "normal"],
+    ['schaf_hinten.obj', "materials.mtl", [1.3, 0, 0], "schaf2", "normal"],
+    ['löwe_vorne.obj', "materials.mtl", [0, 0, 0], "löwe1", "normal"],
+    ['löwe_hinten.obj', "materials.mtl", [1.3, 0, 0], "löwe2", "normal"],
+    // joker
+    ['joker_01.obj', "materials.mtl", [1.5, 0, 0], "goodJoker1", "goodJoker"],
+    ['joker_02.obj', "materials.mtl", [1.5, 0, 0], "goodJoker2", "goodJoker"],
+    ['joker_03.obj', "materials.mtl", [1.5, 0, 0], "badJoker1", "badJoker"],
+    ['joker_04.obj', "materials.mtl", [1.5, 0, 0], "badJoker2", "badJoker"]
 ]
 
 let modelsRain = [ // [ ] Check in meerestiereIndex.html
@@ -101,17 +101,17 @@ let modelsRain = [ // [ ] Check in meerestiereIndex.html
 let memorypairs = [
     ["marker1_1", "marker1_2", false, 'frog.mp3', "normal"],
     ["marker2_1", "marker2_2", false, 'frog.mp3', "normal"],
-    // ["marker3_1", "marker3_2", false, 'frog.mp3' , "normal"],
-    // ["marker4_1", "marker4_2", false, 'frog.mp3' , "normal"],
-    // ["marker5_1", "marker5_2", false, 'frog.mp3' , "normal"],
-    // ["marker6_1", "marker6_2", false, 'frog.mp3' , "normal"],
-    // ["marker7_1", "marker7_2", false, 'frog.mp3' , "normal"],
-    // ["marker8_1", "marker8_2", false, 'frog.mp3' , "normal"],
-    // ["marker9_1", "marker9_2", false, 'frog.mp3' , "normal"],
-    // ["marker10_1", "marker10_2", false, 'frog.mp3', "normal"],
-    // ["marker11_1", "marker11_2", false, 'frog.mp3', "normal"],
-    // ["marker12_1", "marker12_2", false, 'goodJoker.mp3', "goodJoker"],
-    // ["marker13_1", "marker13_2", false, 'badJoker.mp3', "badJoker"],
+    ["marker3_1", "marker3_2", false, 'frog.mp3' , "normal"],
+    ["marker4_1", "marker4_2", false, 'frog.mp3' , "normal"],
+    ["marker5_1", "marker5_2", false, 'frog.mp3' , "normal"],
+    ["marker6_1", "marker6_2", false, 'frog.mp3' , "normal"],
+    ["marker7_1", "marker7_2", false, 'frog.mp3' , "normal"],
+    ["marker8_1", "marker8_2", false, 'frog.mp3' , "normal"],
+    ["marker9_1", "marker9_2", false, 'frog.mp3' , "normal"],
+    ["marker10_1", "marker10_2", false, 'frog.mp3', "normal"],
+    ["marker11_1", "marker11_2", false, 'frog.mp3', "normal"],
+    ["marker12_1", "marker12_2", false, 'goodJoker.mp3', "goodJoker"],
+    ["marker13_1", "marker13_2", false, 'badJoker.mp3', "badJoker"],
 ]
 
 // ========== Functions to Add and Remove Names in params.currentlyVisibleMarkers ========== //
@@ -266,7 +266,7 @@ function checkForSpecialCard(name, cardNameId) {
 function modelsHit(event) {
     params.initHits++;
 
-    if (params.initHits === memorypairs.length && !params.skippedInitColisionHit) {
+    if (params.initHits === params.officialMemorypairsLength && !params.skippedInitColisionHit) { //officialMemorypairsLength weil joker nicht zählen
         params.skippedInitColisionHit = true;
         return; //skip the last one too
     }
@@ -382,7 +382,7 @@ function addMarkerListeners() {
         }
     });
 
-    console.clear();
+    // console.clear();
     updatePairsFound();
 
 }
@@ -439,7 +439,6 @@ function checkRain() {
                     preparams.raining = arrayContains(weatherID, preparams.rainIds);
                     console.log("Is Raining:", preparams.raining);
                     setCorrectModels();
-                    addCollisions();
                     setCorrectTotalCount();
                     setStartButtonDisabledUntilLoaded();
                 }
@@ -515,11 +514,13 @@ function addCollisions() {
         if (isEven(i)) {
             const model = params.models[i];
             let collisionRef = "collision-" + model[3];
+            console.log(collisionRef);
 
             AFRAME.registerComponent(collisionRef, {
                 init: function () {
                     this.el.addEventListener('hitstart', (e) => {
                         console.log(e)
+                        console.log('hitstart');
                         modelsHit(e);
                     })
                     this.el.addEventListener('hit', (e) => {
@@ -552,6 +553,7 @@ function setStartButtonDisabledUntilLoaded() {
                 
                  params.startButton.disabled = false;
                  params.startButton.innerHTML = 'Starte das Spiel';
+                //  addCollisions();
             } else {
                  params.startButton.innerHTML = `Lade Model ${params.amountLoadedModels}/${params.modelsToLoad.length}`;
             }
