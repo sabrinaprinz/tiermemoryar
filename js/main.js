@@ -112,7 +112,7 @@ let memorypairs = [
     ["marker11_1", "marker11_2", false, 'frog.mp3', "normal"],
     ["marker12_1", "marker12_2", false, 'goodJoker.mp3', "goodJoker"],
     ["marker13_1", "marker13_2", false, 'badJoker.mp3', "badJoker"],
-]
+];
 
 // ========== Functions to Add and Remove Names in params.currentlyVisibleMarkers ========== //
 function addMarkerName(name) {
@@ -301,18 +301,35 @@ function modelsHit(event) {
         }
         console.log(marker1ChildClass, marker2ChildClass, modelTriggeringMatch)
 
-
-
         // if index not found yet trigger matchmade
+        // if (!memorypairs[index][2] && belongsToMarker) {
+        //     console.log(params.currentlyVisibleMarkers);
+        //     memorypairs[index][2] = true;
+        //     celebrateMatch();
+        //     playSound(memorypairs[index][3])
+        // }
+
+        //check if markers still visible after 0.5 seconds. Then trigger match
         if (!memorypairs[index][2] && belongsToMarker) {
-            console.log(params.currentlyVisibleMarkers);
-            memorypairs[index][2] = true;
-            celebrateMatch();
-            playSound(memorypairs[index][3])
+            setTimeout(() => {
+                
+                let marker1StillMatching = false;
+                if (marker1 == params.currentlyVisibleMarkers[0] || marker1 == params.currentlyVisibleMarkers[1]){marker1StillMatching = true};
+                let marker2StillMatching = false;
+                if (marker2 == params.currentlyVisibleMarkers[0] || marker2 == params.currentlyVisibleMarkers[1]){marker2StillMatching = true}
+                console.log(marker1, marker2, params.currentPairMatching[0], params.currentPairMatching[1])
+                if (marker1StillMatching && marker2StillMatching){} else {return} ;
+
+                memorypairs[index][2] = true;
+                celebrateMatch();
+                playSound(memorypairs[index][3]);
+                updatePairsFound();
+            }, 500);
         }
+
     }
 
-    updatePairsFound();
+
 
 }
 
@@ -584,6 +601,7 @@ function setStartButtonDisabledUntilLoaded() {
 }
 
 function init() {
+    params.memorypairs = memorypairs;
     checkRain();
 }
 init();
