@@ -61,41 +61,36 @@ let modelsSun = [
     // joker
     ['joker_01.obj', "materials.mtl", [1.5, 0, 0], "goodJoker1", "goodJoker"],
     ['joker_02.obj', "materials.mtl", [1.5, 0, 0], "goodJoker2", "goodJoker"],
-    ['joker_03.obj', "materials.mtl", [1.5, 0, 0], "badJoker1", "badJoker"],
-    ['joker_04.obj', "materials.mtl", [1.5, 0, 0], "badJoker2", "badJoker"]
-]
+    
 
 let modelsRain = [ // [ ] Check in meerestiereIndex.html
-    ['Hund_Vorne.obj', "materials.mtl", [0, 0, 0], "dog1", "normal"], // obj, material, position, refClass, specialCard
-    ['Hund_Hinten.obj', "materials.mtl", [0, 0, 0], "dog2", "normal"],
-    ['Katze_Vorne.obj', "materials.mtl", [0, 0, 0], "cat1", "normal"],
-    ['Katze_Hinten.obj', "materials.mtl", [0, 0, 0], "cat2", "normal"],
-    ['tapir_vorne.obj', "materials.mtl", [0, 0, 0], "tapir1", "normal"],
-    ['tapir_hinten.obj', "materials.mtl", [1.3, 0, 0], "tapir2", "normal"],
-    ['tukan_vorne.obj', "materials.mtl", [0, 0, 0], "tukan1", "normal"],
-    ['tukan_hinten.obj', "materials.mtl", [1.3, 0, 0], "tukan2", "normal"],
-    ['affen_vorne.obj', "materials.mtl", [0, 0, 0], "affe1", "normal"],
-    ['affen_hinten.obj', "materials.mtl", [1.3, 0, 0], "affe2", "normal"],
-    ['bär_vorne.obj', "materials.mtl", [0, 0, 0], "bär1", "normal"],
-    ['bär_hinten.obj', "materials.mtl", [1.3, -0.05, 0], "bär2", "normal"],
-    ['fuchs_vorne.obj', "materials.mtl", [0, 0, 0], "fuchs1", "normal"],
-    ['fuchs_hinten.obj', "materials.mtl", [1.3, -0.04, 0], "fuchs2", "normal"],
-    ['giraffe_vorne.obj', "materials.mtl", [0, 0, 0], "giraffe1", "normal"],
-    ['giraffe_hinten.obj', "materials.mtl", [1.3, 0, 0], "giraffe2", "normal"],
-    ['koala_vorne.obj', "materials.mtl", [0, 0, 0], "koala1", "normal"],
-    ['koala_hinten.obj', "materials.mtl", [1.3, 0, 0], "koala2", "normal"],
-    ['schaf_vorne.obj', "materials.mtl", [0, 0, 0], "schaf1", "normal"],
-    ['schaf_hinten.obj', "materials.mtl", [1.3, 0, 0], "schaf2", "normal"],
-    ['löwe_vorne.obj', "materials.mtl", [0, 0, 0], "löwe1", "normal"],
-    ['löwe_hinten.obj', "materials.mtl", [1.3, 0, 0], "löwe2", "normal"],
+    ['dori_vorne.obj', "materials.mtl", [0, 0, 0], "dori1", "normal"], // obj, material, position, refClass, specialCard
+    ['dori_hinten.obj', "materials.mtl", [0, 0, 0], "dori2", "normal"],
+    ['delphin_vorne.obj', "materials.mtl", [0, 0, 0], "delphin1", "normal"],
+    ['delphin_hinten.obj', "materials.mtl", [0, 0, 0], "delphin2", "normal"],
+    ['frosch_vorne.obj', "materials.mtl", [0, 0, 0], "frosch1", "normal"],
+    ['frosch_hinten.obj', "materials.mtl", [1.3, 0, 0], "frosch2", "normal"],
+    ['hai_vorne.obj', "materials.mtl", [0, 0, 0], "hai1", "normal"],
+    ['hai_hinten.obj', "materials.mtl", [1.3, 0, 0], "hai2", "normal"],
+    ['krabbe_vorne.obj', "materials.mtl", [0, 0, 0], "krabbe1", "normal"],
+    ['krabbe_hinten.obj', "materials.mtl", [1.3, 0, 0], "krabbe2", "normal"],
+    ['lustigerAugenfisch_vorne.obj', "materials.mtl", [0, 0, 0], "lustigerAugenfisch1", "normal"],
+    ['lustigerAugenfisch_hinten.obj', "materials.mtl", [1.3, -0.05, 0], "lustigerAugenfisch2", "normal"],
+    ['schildkröte_vorne.obj', "materials.mtl", [0, 0, 0], "schildkröte1", "normal"],
+    ['schildkröte_hinten.obj', "materials.mtl", [1.3, -0.04, 0], "schildkröte2", "normal"],
+    ['seekuh_vorne.obj', "materials.mtl", [0, 0, 0], "seekuh1", "normal"],
+    ['seekuh_hinten.obj', "materials.mtl", [1.3, 0, 0], "seekuh2", "normal"],
+    ['seelöwe_vorne.obj', "materials.mtl", [0, 0, 0], "seelöwe1", "normal"],
+    ['seelöwe_hinten.obj', "materials.mtl", [1.3, 0, 0], "seelöwe2", "normal"],
+    ['tigerfisch_vorne.obj', "materials.mtl", [0, 0, 0], "tigerfisch1", "normal"],
+    ['tigerfisch_hinten.obj', "materials.mtl", [1.3, 0, 0], "tigerfisch2", "normal"],
+    ['wal_vorne.obj', "materials.mtl", [0, 0, 0], "wal1", "normal"],
+    ['wal_hinten.obj', "materials.mtl", [1.3, 0, 0], "wal2", "normal"],
     // joker
-    ['joker_01.obj', "materials.mtl", [1.5, 0, 0], "goodJoker1", "goodJoker"],
-    ['joker_02.obj', "materials.mtl", [1.5, 0, 0], "goodJoker2", "goodJoker"],
+    
     ['joker_03.obj', "materials.mtl", [1.5, 0, 0], "badJoker1", "badJoker"],
     ['joker_04.obj', "materials.mtl", [1.5, 0, 0], "badJoker2", "badJoker"]
 ]
-
-
 
 
 let memorypairs = [
@@ -112,6 +107,23 @@ let memorypairs = [
     ["marker11_1", "marker11_2", false, 'löwe.mp3', "normal"],
     ["marker12_1", "marker12_2", false, 'goodJoker.mp3', "goodJoker"],
     ["marker13_1", "marker13_2", false, 'badJoker.mp3', "badJoker"],
+
+    
+    // ["marker1_1", "marker1_2", false, 'dori.mp3', "normal"],
+    // ["marker2_1", "marker2_2", false, 'delfin.mp3', "normal"],
+    // ["marker3_1", "marker3_2", false, 'frosch.mp3' , "normal"],
+    // ["marker4_1", "marker4_2", false, 'hai.mp3' , "normal"],
+    // ["marker5_1", "marker5_2", false, 'krabbe.mp3' , "normal"],
+    // ["marker6_1", "marker6_2", false, 'augenfisch.mp3' , "normal"],
+    // ["marker7_1", "marker7_2", false, 'schildkröte.mp3' , "normal"],
+    // ["marker8_1", "marker8_2", false, 'seekuh.mp3' , "normal"],
+    // ["marker9_1", "marker9_2", false, 'seelöwe.mp3' , "normal"],
+    // ["marker10_1", "marker10_2", false, 'tigerfisch.mp3', "normal"],
+    // ["marker11_1", "marker11_2", false, 'wal.mp3', "normal"],
+    // ["marker12_1", "marker12_2", false, 'goodJoker.mp3', "goodJoker"],
+    // ["marker13_1", "marker13_2", false, 'badJoker.mp3', "badJoker"],
+
+
 ];
 
 // ========== Functions to Add and Remove Names in params.currentlyVisibleMarkers ========== //
