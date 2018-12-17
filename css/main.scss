@@ -32,7 +32,8 @@ a:hover {
     padding: 0;
 }
 
-#matchTitle{
+#matchTitle {
+    pointer-events: none;
     position: absolute;
     width: 100vw;
     height: 100vh;
@@ -41,7 +42,77 @@ a:hover {
     color: white;
     opacity: 0;
     line-height: 80vh;
+}
 
+#badJoker {
+    pointer-events: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    font-size: 8rem;
+    text-align: center;
+    color: white;
+    opacity: 0;
+    line-height: 80vh;
+}
+
+#soundBox {
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    #soundButton {
+        margin-bottom: 10px;
+    }
+}
+
+#titleWrapper {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 1;
+    #startButton {
+        margin: 0;
+        margin-top: 14px;
+        margin-bottom: 5vh;
+    }
+}
+
+#endOfTheGame {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    pointer-events: none;
+    opacity: 0;
+
+    h1 {
+        color: white;
+    }
 }
 
 /* ==========================================================================

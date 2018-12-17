@@ -1,0 +1,331 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Ar Aframe Base</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="css/normalize.min.css">
+	<link rel="stylesheet" href="css/main.css">
+
+	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+
+	<!-- AFRAME -->
+	<!-- include aframe -->
+	<script src="js/vendor/aframe/build/aframe.min.js"></script> 
+
+	<!-- include ar.js -->
+	<!-- <script src="js/vendor/aframe/build/aframe-ar.js"></script> -->
+	<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/dev/aframe/build/aframe-ar.js"></script> 
+
+</head>
+
+<body>
+
+	<p class="pairsFound">Pairs Found <span id="pairsFound"></span></p>
+
+	<h1 id="matchTitle">Match!</h1>
+
+	<a-scene embedded arjs='patternRatio: 0.9;'>
+
+		<a-assets>
+    		<a-asset-item id="dog_v" src="assets/Hund_Vorne.obj"></a-asset-item>
+    		<a-asset-item id="dog_h" src="assets/Hund_Hinten.obj"></a-asset-item>
+    		<a-asset-item id="cat_v" src="assets/Katze_Vorne.obj"></a-asset-item>
+    		<a-asset-item id="cat_h" src="assets/Katze_Hinten.obj"></a-asset-item>
+    		<a-asset-item id="tapir_v" src="assets/tapir_vorne.obj"></a-asset-item>
+    		<a-asset-item id="tapir_h" src="assets/tapir_hinten.obj"></a-asset-item>
+    		<a-asset-item id="affen_v" src="assets/affen_vorne.obj"></a-asset-item>
+    		<a-asset-item id="affen_h" src="assets/affen_hinten.obj"></a-asset-item>
+    		<a-asset-item id="bär_v" src="assets/bär_vorne.obj"></a-asset-item>
+    		<a-asset-item id="bär_h" src="assets/bär_hinten.obj"></a-asset-item>
+    		<a-asset-item id="fuchs_v" src="assets/fuchs_vorne.obj"></a-asset-item>
+    		<a-asset-item id="fuchs_h" src="assets/fuchs_hinten.obj"></a-asset-item>
+    		<a-asset-item id="giraffe_v" src="assets/giraffe_vorne.obj"></a-asset-item>
+    		<a-asset-item id="giraffe_h" src="assets/giraffe_hinten.obj"></a-asset-item>
+    		<a-asset-item id="koala_v" src="assets/koala_vorne.obj"></a-asset-item>
+    		<a-asset-item id="koala_h" src="assets/koala_hinten.obj"></a-asset-item>
+    		<a-asset-item id="schaf_v" src="assets/schaf_vorne.obj"></a-asset-item>
+    		<a-asset-item id="schaf_h" src="assets/schaf_hinten.obj"></a-asset-item>
+    		<a-asset-item id="löwe_v" src="assets/löwe_vorne.obj"></a-asset-item>
+    		<a-asset-item id="löwe_h" src="assets/löwe_hinten.obj"></a-asset-item>
+    		<a-asset-item id="tukan_v" src="assets/tukan_vorne.obj"></a-asset-item>
+    		<a-asset-item id="tukan_h" src="assets/tukan_hinten.obj"></a-asset-item>
+
+    		<!--JOKER-->
+
+    		<a-asset-item id="joker_01" src="assets/joker_01.obj"></a-asset-item>
+    		<a-asset-item id="joker_02" src="assets/joker_02.obj"></a-asset-item>
+    		<a-asset-item id="joker_03" src="assets/joker_03.obj"></a-asset-item>
+    		<a-asset-item id="joker_04" src="assets/joker_04.obj"></a-asset-item>
+
+    		<!--MEERESTIERE-->
+
+    		<a-asset-item id="hai_v" src="assets/hai_vorne.obj"></a-asset-item>
+    		<a-asset-item id="hai_h" src="assets/hai_hinten.obj"></a-asset-item>
+    		<a-asset-item id="wal_v" src="assets/wal_vorne.obj"></a-asset-item>
+    		<a-asset-item id="wal_h" src="assets/wal_hinten.obj"></a-asset-item>
+    		<a-asset-item id="fish_v" src="assets/lustigerAugenfisch_Vorne.obj"></a-asset-item>
+    		<a-asset-item id="fish_h" src="assets/lustigerAugenfisch_Hinten.obj"></a-asset-item>
+    		<a-asset-item id="seekuh_v" src="assets/seekuh_vorne.obj"></a-asset-item>
+    		<a-asset-item id="seekuh_h" src="assets/seekuh_hinten.obj"></a-asset-item>
+    		<a-asset-item id="krabbe_v" src="assets/krabbe_vorne.obj"></a-asset-item>
+    		<a-asset-item id="krabbe_h" src="assets/krabbe_hinten.obj"></a-asset-item>
+    		<a-asset-item id="delphin_v" src="assets/delphin_vorne.obj"></a-asset-item>
+    		<a-asset-item id="delphin_h" src="assets/delphin_hinten.obj"></a-asset-item>
+    		<a-asset-item id="schildkröte_v" src="assets/schildkröte_vorne.obj"></a-asset-item>
+    		<a-asset-item id="schildkröte_h" src="assets/schildkröte_hinten.obj"></a-asset-item>
+    		<a-asset-item id="seelöwe_v" src="assets/seelöwe_vorne.obj"></a-asset-item>
+    		<a-asset-item id="seelöwe_h" src="assets/seelöwe_hinten.obj"></a-asset-item>
+    		<a-asset-item id="tigerfisch_v" src="assets/tigerfisch_vorne.obj"></a-asset-item>
+    		<a-asset-item id="tigerfisch_h" src="assets/tigerfisch_hinten.obj"></a-asset-item>
+    		<a-asset-item id="dori_v" src="assets/dori_vorne.obj"></a-asset-item>
+    		<a-asset-item id="dori_h" src="assets/dori_hinten.obj"></a-asset-item>
+    		<a-asset-item id="frosch_v" src="assets/frosch_vorne.obj"></a-asset-item>
+    		<a-asset-item id="frosch_h" src="assets/frosch_hinten.obj"></a-asset-item>
+
+
+    		
+  		</a-assets>
+
+
+
+  		<!--NORMALE TIERE-->
+
+		<a-marker preset='custom' type='pattern' url='patterns/1.patt' id="marker1_1">
+			<a-obj-model src="#dog_v"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/2.patt' id="marker1_2">
+			<a-obj-model src="#dog_h"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/3.patt' id="marker2_1">
+			<a-obj-model src="#cat_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/4.patt' id="marker2_2">
+			<a-obj-model src="#cat_h"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/5.patt' id="marker3_1">
+			<a-obj-model src="#tapir_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/6.patt' id="marker3_2">
+			<a-obj-model src="#tapir_h"position="1.3 0 0"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/7.patt' id="marker4_1">
+			<a-obj-model src="#tukan_v"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/8.patt' id="marker4_2">
+			<a-obj-model src="#tukan_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/9.patt' id="marker5_1">
+			<a-obj-model src="#affen_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/10.patt' id="marker5_2">
+			<a-obj-model src="#affen_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/11.patt' id="marker6_1">
+			<a-obj-model src="#bär_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/12.patt' id="marker6_2">
+			<a-obj-model src="#bär_h"position="1.3 -0.05 0"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/13.patt' id="marker7_1">
+			<a-obj-model src="#fuchs_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/14.patt' id="marker7_2">
+			<a-obj-model src="#fuchs_h"position="1.3 -0.04 0"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/15.patt' id="marker8_1">
+			<a-obj-model src="#giraffe_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/16.patt' id="marker8_2">
+			<a-obj-model src="#giraffe_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/17.patt' id="marker9_1">
+			<a-obj-model src="#koala_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/18.patt' id="marker9_2">
+			<a-obj-model src="#koala_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/19.patt' id="marker10_1">
+			<a-obj-model src="#schaf_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/20.patt' id="marker10_2">
+			<a-obj-model src="#schaf_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/21.patt' id="marker11_1">
+			<a-obj-model src="#löwe_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/22.patt' id="marker11_2">
+			<a-obj-model src="#löwe_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+
+		
+
+<!-- JOKER --> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/23.patt' id="marker3_1">
+			<a-obj-model src="#joker_01" position="1.5 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/24.patt' id="marker3_1">
+			<a-obj-model src="#joker_02" position="1.5 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/23.patt' id="marker3_1">
+			<a-obj-model src="#joker_03" position="1.5 0 0"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/24.patt' id="marker3_1">
+			<a-obj-model src="#joker_04" position="1.5 0 0"></a-obj-model> 
+		</a-marker> 
+
+
+<!-- MEERESTIERE -->
+
+
+		<a-marker preset='custom' type='pattern' url='patterns/1.patt' id="marker1_1">
+			<a-obj-model src="#wal_v"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/2.patt' id="marker1_2">
+			<a-obj-model src="#wal_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/3.patt' id="marker2_1">
+			<a-obj-model src="#fish_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/4.patt' id="marker2_2">
+			<a-obj-model src="#fish_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/5.patt' id="marker3_1">
+			<a-obj-model src="#hai_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/6.patt' id="marker3_2">
+			<a-obj-model src="#hai_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/7.patt' id="marker4_1">
+			<a-obj-model src="#seekuh_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/8.patt' id="marker4_2">
+			<a-obj-model src="#seekuh_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/9.patt' id="marker5_1">
+			<a-obj-model src="#krabbe_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/10.patt' id="marker5_2">
+			<a-obj-model src="#krabbe_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/11.patt' id="marker6_1">
+			<a-obj-model src="#delphin_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/12.patt' id="marker6_2">
+			<a-obj-model src="#delphin_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/13.patt' id="marker7_1">
+			<a-obj-model src="#schildkröte_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/14.patt' id="marker7_2">
+			<a-obj-model src="#schildkröte_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/15.patt' id="marker8_1">
+			<a-obj-model src="#seelöwe_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/16.patt' id="marker8_2">
+			<a-obj-model src="#seelöwe_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/17.patt' id="marker9_1">
+			<a-obj-model src="#tigerfisch_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/18.patt' id="marker9_2">
+			<a-obj-model src="#tigerfisch_h"position="1.3 0 0"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/19.patt' id="marker10_1">
+			<a-obj-model src="#dori_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/20.patt' id="marker10_2">
+			<a-obj-model src="#dori_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+		<a-marker preset='custom' type='pattern' url='patterns/21.patt' id="marker11_1">
+			<a-obj-model src="#frosch_v"></a-obj-model>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/22.patt' id="marker11_2">
+			<a-obj-model src="#frosch_h"position="1.3 0 0"></a-obj-model>
+		</a-marker> 
+
+
+
+
+
+
+
+		
+
+
+
+
+
+	
+
+		<a-marker preset='custom' type='pattern' url='patterns/7.patt' id="marker4_1">
+			<a-sphere color="orange" position="0 0 0" radius="0.5" material="opacity: 1; transparent: true"></a-sphere>
+		</a-marker>
+
+		<a-marker preset='custom' type='pattern' url='patterns/8.patt' id="marker4_2">
+			<a-sphere color="orange" position="0 0 0" radius="0.5" material="opacity: 1; transparent: true"></a-sphere>
+		</a-marker>
+
+		<!-- add a simple camera -->
+		<a-entity camera></a-entity>
+	</a-scene>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+	<script src="js/main.js"></script>
+</body>
+
+</html>
