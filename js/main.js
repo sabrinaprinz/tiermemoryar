@@ -6,10 +6,10 @@
 // ========== General Pre Settings ========== //
 let preparams = {
     addCollisionListeners: true,
-    checkForWeather: false,
+    checkForWeather: true,
     raining: false,
     rainIds: [803, 801, 802],
-    appIdWeatherApi: "9ddf1493dd103f1245f6d568075bc589",
+    appIdWeatherApi: "1c61af36cec8024c37451ae95d81b031",
     buildWithMtl: false,
 }
 
@@ -600,9 +600,18 @@ function setStartButtonDisabledUntilLoaded() {
 
 }
 
+function flipCanvas(){
+var canvas = document.getElementsByTagName('canvas');
+var canvasContext = canvas[0].getContext("webgl")
+// console.log(canvasContext);
+// canvasContext.scale(-1, 1); mirror needs different apporach
+
+}
+
 function init() {
     params.memorypairs = memorypairs;
     checkRain();
+    flipCanvas();
 }
 init();
 
