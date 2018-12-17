@@ -60,7 +60,8 @@ let modelsSun = [
     ['löwe_hinten.obj', "materials.mtl", [1.3, 0, 0], "löwe2", "normal"],
     // joker
     ['joker_01.obj', "materials.mtl", [1.5, 0, 0], "goodJoker1", "goodJoker"],
-    ['joker_02.obj', "materials.mtl", [1.5, 0, 0], "goodJoker2", "goodJoker"],
+    ['joker_02.obj', "materials.mtl", [1.5, 0, 0], "goodJoker2", "goodJoker"]
+    ]
     
 
 let modelsRain = [ // [ ] Check in meerestiereIndex.html
@@ -86,10 +87,12 @@ let modelsRain = [ // [ ] Check in meerestiereIndex.html
     ['tigerfisch_hinten.obj', "materials.mtl", [1.3, 0, 0], "tigerfisch2", "normal"],
     ['wal_vorne.obj', "materials.mtl", [0, 0, 0], "wal1", "normal"],
     ['wal_hinten.obj', "materials.mtl", [1.3, 0, 0], "wal2", "normal"],
+
     // joker
-    
     ['joker_03.obj', "materials.mtl", [1.5, 0, 0], "badJoker1", "badJoker"],
-    ['joker_04.obj', "materials.mtl", [1.5, 0, 0], "badJoker2", "badJoker"]
+    ['joker_04.obj', "materials.mtl", [1.5, 0, 0], "badJoker2", "badJoker"],
+    ['joker_01.obj', "materials.mtl", [1.5, 0, 0], "goodJoker1", "goodJoker"],
+    ['joker_02.obj', "materials.mtl", [1.5, 0, 0], "goodJoker2", "goodJoker"]
 ]
 
 
@@ -107,24 +110,23 @@ let memorypairs = [
     ["marker11_1", "marker11_2", false, 'löwe.mp3', "normal"],
     ["marker12_1", "marker12_2", false, 'goodJoker.mp3', "goodJoker"],
     ["marker13_1", "marker13_2", false, 'badJoker.mp3', "badJoker"],
-
-    
-    // ["marker1_1", "marker1_2", false, 'dori.mp3', "normal"],
-    // ["marker2_1", "marker2_2", false, 'delfin.mp3', "normal"],
-    // ["marker3_1", "marker3_2", false, 'frosch.mp3' , "normal"],
-    // ["marker4_1", "marker4_2", false, 'hai.mp3' , "normal"],
-    // ["marker5_1", "marker5_2", false, 'krabbe.mp3' , "normal"],
-    // ["marker6_1", "marker6_2", false, 'augenfisch.mp3' , "normal"],
-    // ["marker7_1", "marker7_2", false, 'schildkröte.mp3' , "normal"],
-    // ["marker8_1", "marker8_2", false, 'seekuh.mp3' , "normal"],
-    // ["marker9_1", "marker9_2", false, 'seelöwe.mp3' , "normal"],
-    // ["marker10_1", "marker10_2", false, 'tigerfisch.mp3', "normal"],
-    // ["marker11_1", "marker11_2", false, 'wal.mp3', "normal"],
-    // ["marker12_1", "marker12_2", false, 'goodJoker.mp3', "goodJoker"],
-    // ["marker13_1", "marker13_2", false, 'badJoker.mp3', "badJoker"],
-
-
 ];
+
+let rainingMemorypairs = [
+    ["marker1_1", "marker1_2", false, 'dori.mp3', "normal"],
+    ["marker2_1", "marker2_2", false, 'delfin.mp3', "normal"],
+    ["marker3_1", "marker3_2", false, 'frosch.mp3' , "normal"],
+    ["marker4_1", "marker4_2", false, 'hai.mp3' , "normal"],
+    ["marker5_1", "marker5_2", false, 'krabbe.mp3' , "normal"],
+    ["marker6_1", "marker6_2", false, 'augenfisch.mp3' , "normal"],
+    ["marker7_1", "marker7_2", false, 'schildkröte.mp3' , "normal"],
+    ["marker8_1", "marker8_2", false, 'seekuh.mp3' , "normal"],
+    ["marker9_1", "marker9_2", false, 'seelöwe.mp3' , "normal"],
+    ["marker10_1", "marker10_2", false, 'tigerfisch.mp3', "normal"],
+    ["marker11_1", "marker11_2", false, 'wal.mp3', "normal"],
+    ["marker12_1", "marker12_2", false, 'goodJoker.mp3', "goodJoker"],
+    ["marker13_1", "marker13_2", false, 'badJoker.mp3', "badJoker"],
+]
 
 // ========== Functions to Add and Remove Names in params.currentlyVisibleMarkers ========== //
 function addMarkerName(name) {
@@ -460,13 +462,15 @@ function startGame() {
 // This runs before Aframe to set the right models and check for rain.
 
 function checkRain() {
-    if (params.checkForWeather) {
+    if (preparams.checkForWeather) {
+
 
         var getLocation = function () {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(createAPI);
             } else {
                 console.log("Geolocation is not supported by this browser.");
+                alert('No geolov')
             }
         };
 
@@ -486,7 +490,9 @@ function checkRain() {
                     console.log("The weather outside is " + json.weather[0].main + ".");
                     let weatherID = json.weather[0].id;
                     preparams.raining = arrayContains(weatherID, preparams.rainIds);
+                      // preparams.raining = true;
                     console.log("Is Raining:", preparams.raining);
+
                     setCorrectModels();
                     setCorrectTotalCount();
                     setStartButtonDisabledUntilLoaded();
@@ -522,6 +528,12 @@ function generateModelHtml(i, objName, mtlName, position, refClass) {
 }
 
 function setCorrectModels() {
+    // update memorypairs for correct sound if raining
+    if (!preparams.raining) {
+    } else {
+        memorypairs = rainingMemorypairs;
+    }
+
     params.models = returnCurrentModels();
 
     let markers = document.querySelectorAll('a-marker');
@@ -613,14 +625,16 @@ function setStartButtonDisabledUntilLoaded() {
 }
 
 function flipCanvas(){
-var canvas = document.getElementsByTagName('canvas');
-var canvasContext = canvas[0].getContext("webgl")
+// var canvas = document.getElementsByTagName('canvas');
+// var canvasContext = canvas[0].getContext("webgl")
 // console.log(canvasContext);
 // canvasContext.scale(-1, 1); mirror needs different apporach
 
 }
 
 function init() {
+    params.startButton = document.getElementById('startButton');
+    params.startButton.disabled = true;
     params.memorypairs = memorypairs;
     checkRain();
     flipCanvas();
