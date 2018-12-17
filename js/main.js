@@ -8,7 +8,7 @@ let preparams = {
     addCollisionListeners: true,
     checkForWeather: true,
     raining: false,
-    rainIds: [803, 801, 802],
+    rainIds: [200, 201, 202, 210, 211, 212, 221, 230, 231, 232, 300, 301, 302, 310, 311, 312, 313, 314, 321, 500, 501, 502, 503, 504, 511, 520, 521, 522, 531, 600, 601, 602, 611, 612, 615, 616, 620, 621, 622],
     appIdWeatherApi: "1c61af36cec8024c37451ae95d81b031",
     buildWithMtl: false,
 }
@@ -99,17 +99,17 @@ let modelsRain = [ // [ ] Check in meerestiereIndex.html
 
 
 let memorypairs = [
-    ["marker1_1", "marker1_2", false, 'frog.mp3', "normal"],
-    ["marker2_1", "marker2_2", false, 'frog.mp3', "normal"],
-    ["marker3_1", "marker3_2", false, 'frog.mp3' , "normal"],
-    ["marker4_1", "marker4_2", false, 'frog.mp3' , "normal"],
-    ["marker5_1", "marker5_2", false, 'frog.mp3' , "normal"],
-    ["marker6_1", "marker6_2", false, 'frog.mp3' , "normal"],
-    ["marker7_1", "marker7_2", false, 'frog.mp3' , "normal"],
-    ["marker8_1", "marker8_2", false, 'frog.mp3' , "normal"],
-    ["marker9_1", "marker9_2", false, 'frog.mp3' , "normal"],
-    ["marker10_1", "marker10_2", false, 'frog.mp3', "normal"],
-    ["marker11_1", "marker11_2", false, 'frog.mp3', "normal"],
+    ["marker1_1", "marker1_2", false, 'hund.mp3', "normal"],
+    ["marker2_1", "marker2_2", false, 'katze.mp3', "normal"],
+    ["marker3_1", "marker3_2", false, 'tapir.mp3' , "normal"],
+    ["marker4_1", "marker4_2", false, 'tukan.mp3' , "normal"],
+    ["marker5_1", "marker5_2", false, 'affe.mp3' , "normal"],
+    ["marker6_1", "marker6_2", false, 'bär.mp3' , "normal"],
+    ["marker7_1", "marker7_2", false, 'fuchs.mp3' , "normal"],
+    ["marker8_1", "marker8_2", false, 'giraffe.mp3' , "normal"],
+    ["marker9_1", "marker9_2", false, 'koala.mp3' , "normal"],
+    ["marker10_1", "marker10_2", false, 'schaf.mp3', "normal"],
+    ["marker11_1", "marker11_2", false, 'löwe.mp3', "normal"],
     ["marker12_1", "marker12_2", false, 'goodJoker.mp3', "goodJoker"],
     ["marker13_1", "marker13_2", false, 'badJoker.mp3', "badJoker"],
 ];
